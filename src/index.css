@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+  background-color: #242424;
+  color: aliceblue;
+  font-size: 1.2rem;
+}
+
+input {
+  background: none;
+  border: none;
+  color: aliceblue;
+  font-size: 1.2rem;
+  height: fit-content;
+  width: 80vw;
+}
+
+input:focus {
+  outline: none;
+}
