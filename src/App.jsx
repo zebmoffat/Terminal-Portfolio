@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import "./index.css";
 
-import Intro from './components/Intro.jsx';
+import Intro from "./components/Intro.jsx";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -14,7 +14,7 @@ function App() {
     }@desktop:~$`
   );
 
-  const[commandsList] = useState([<Intro />])
+  const [commandsList, setCommandsList] = useState([<Intro />]);
 
   return (
     <>
@@ -29,6 +29,7 @@ function App() {
           onKeyDown={handleKeyDown}
           spellCheck="false"
           type="text"
+          value={inputValue}
         />
       </div>
     </>
@@ -47,7 +48,16 @@ function App() {
         console.log("down");
         break;
       case "Enter":
-        console.log("enter");
+        if (inputValue.trim() !== "") {
+          console.log("enter");
+          setCommandsList((previousCommandsList) => [
+            ...previousCommandsList,
+            <p>
+              {user}{" " + inputValue}
+            </p>,
+          ]);
+          setInputValue("");
+        }
         break;
     }
   }
