@@ -1,24 +1,28 @@
 import { useState } from "react";
 import "./index.css";
 
-//TODO Add command navigation with arrow keys
+import Intro from './components/Intro.jsx';
 
 function App() {
-  const [theme, setTheme] = useState(0);
   const [inputValue, setInputValue] = useState("");
+  const [theme, setTheme] = useState(0);
+  const [user] = useState(
+    `user${
+      Math.floor(Math.random() * (1000000 - 10000 + 1)) + 10000
+    }@desktop:~$`
+  );
 
-  const user = `user${
-    Math.floor(Math.random() * (1000000 - 10000 + 1)) + 10000
-  }@desktop:~$`;
 
   return (
     <>
+      <Intro />
       <div style={{ display: "inline-flex", alignItems: "center" }}>
         <p>{user}&nbsp;</p>
         <input
-          onChange={handleInput}
           maxLength="50"
+          onChange={handleInput}
           onKeyDown={handleKeyDown}
+          spellcheck="false"
           type="text"
         />
       </div>
