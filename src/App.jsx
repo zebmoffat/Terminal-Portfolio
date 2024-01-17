@@ -6,7 +6,6 @@ import Intro from "./components/Intro.jsx";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [key, setKey] = useState(1);
   const [theme, setTheme] = useState(0);
   const [user] = useState(
     `user${
@@ -14,7 +13,9 @@ function App() {
     }@desktop:~$`
   );
 
-  const [commandsList, setCommandsList] = useState([<Intro />]);
+  const [commandsList, setCommandsList] = useState([<Intro />]); //Shows on screen
+  const [previousCommands, setPreviousCommands] = useState([]); //Previous text entered
+  const [currentIndex, setCurrentIndex] = useState(previousCommands.length); //Index of previous commands Array to find command when up or down arrow pressed
 
   return (
     <>
@@ -42,20 +43,40 @@ function App() {
   function handleKeyDown(event) {
     switch (event.key) {
       case "ArrowUp":
-        console.log("up");
+        console.log(currentIndex);
+
+        if (currentIndex !== 0) {setCurrentIndex(currentIndex - 1);}
+        setInputValue(previousCommands[currentIndex]);
+
+        event.preventDefault();
+        inputRef.current.selectionStart = inputRef.current.value.length;
+        inputRef.current.focus;
+
+
+
         break;
       case "ArrowDown":
-        console.log("down");
+        console.log(currentIndex);
+        if (currentIndex === previousCommands.length) {
+          setInputValue("");
+        } else if (currentIndex === 0 && inputValue === previousCommands[0]) {
+          setCurrentIndex(currentIndex + 1);
+          setInputValue(previousCommands[currentIndex]);
+        } else {
+          setCurrentIndex(currentIndex + 1);
+          setInputValue(previousCommands[currentIndex]);
+        }
         break;
       case "Enter":
         if (inputValue.trim() !== "") {
-          console.log("enter");
           setCommandsList((previousCommandsList) => [
             ...previousCommandsList,
             <p>
               {user}{" " + inputValue}
             </p>,
           ]);
+          setPreviousCommands((previous) => [...previousCommands, inputValue]);
+          setCurrentIndex(previousCommands.length);
           setInputValue("");
         }
         break;
