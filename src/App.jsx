@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-
+import { useLayoutEffect, useEffect, useRef, useState } from "react";
 import "./index.css";
-
 import Intro from "./components/Intro.jsx";
 
 function App() {
@@ -17,6 +15,15 @@ function App() {
   const [previousCommands, setPreviousCommands] = useState([]); //Previous text entered
   const [currentIndex, setCurrentIndex] = useState(previousCommands.length); //Index of previous commands Array to find command when up or down arrow pressed
 
+  const inputRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputValue]);
+
+
   return (
     <>
       {commandsList.map((component, index) => (
@@ -25,6 +32,7 @@ function App() {
       <div style={{ display: "inline-flex", alignItems: "center" }}>
         <p>{user}&nbsp;</p>
         <input
+          ref={inputRef}
           maxLength="50"
           onChange={handleInput}
           onKeyDown={handleKeyDown}
@@ -43,40 +51,36 @@ function App() {
   function handleKeyDown(event) {
     switch (event.key) {
       case "ArrowUp":
-        console.log(currentIndex);
-
-        if (currentIndex !== 0) {setCurrentIndex(currentIndex - 1);}
-        setInputValue(previousCommands[currentIndex]);
-
-        event.preventDefault();
-        inputRef.current.selectionStart = inputRef.current.value.length;
-        inputRef.current.focus;
-
-
-
+        if (currentIndex > 0) {
+          setCurrentIndex(currentIndex - 1);
+          setInputValue(previousCommands[currentIndex - 1]);
+          setTimeout(() => {
+            inputRef.current.focus();
+            inputRef.current.selectionStart = inputRef.current.value.length;
+            inputRef.current.selectionEnd = inputRef.current.value.length;
+          }, 0);
+        }
         break;
       case "ArrowDown":
-        console.log(currentIndex);
-        if (currentIndex === previousCommands.length) {
-          setInputValue("");
-        } else if (currentIndex === 0 && inputValue === previousCommands[0]) {
+        if (currentIndex < previousCommands.length - 1) {
           setCurrentIndex(currentIndex + 1);
-          setInputValue(previousCommands[currentIndex]);
+          setInputValue(previousCommands[currentIndex + 1]);
         } else {
-          setCurrentIndex(currentIndex + 1);
-          setInputValue(previousCommands[currentIndex]);
+          setCurrentIndex(previousCommands.length);
+          setInputValue("");
         }
         break;
       case "Enter":
         if (inputValue.trim() !== "") {
           setCommandsList((previousCommandsList) => [
             ...previousCommandsList,
-            <p>
-              {user}{" " + inputValue}
+            <p key={previousCommandsList.length}>
+              {user}
+              {" " + inputValue}
             </p>,
           ]);
           setPreviousCommands((previous) => [...previousCommands, inputValue]);
-          setCurrentIndex(previousCommands.length);
+          setCurrentIndex(previousCommands.length + 1);
           setInputValue("");
         }
         break;

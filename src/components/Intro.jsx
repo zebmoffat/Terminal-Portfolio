@@ -15,8 +15,7 @@ function Intro() {
 
 `;
 
-return (<>
-       
+return (<>    
        <p style={{ whiteSpace: "pre" }}>
         {name}
        </p> 
