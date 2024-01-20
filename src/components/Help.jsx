@@ -1,5 +1,5 @@
 function Help() {
-    const help = `
+  const help = `
     'about'                         about me
 
     'contact'                       my contact information
@@ -17,7 +17,7 @@ function Help() {
     'clear'                         clears the terminal
     `;
 
-    return(<p style={{ whiteSpace: "pre" }}>{help}</p>);
+  return <p style={{ whiteSpace: "pre" }}>{help}</p>;
 }
 
 export default Help;

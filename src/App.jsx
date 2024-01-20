@@ -1,6 +1,7 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./index.css";
 import About from "./components/About.jsx";
+import Contact from "./components/Contact.jsx";
 import Help from "./components/Help.jsx";
 import Intro from "./components/Intro.jsx";
 
@@ -13,11 +14,16 @@ function App() {
     }@desktop:~$`
   );
 
-  const [commandsList, setCommandsList] = useState([<Intro />, <p>For a list of commands, type 'help'.</p>, <br />]); //Shows on screen
+  const [commandsList, setCommandsList] = useState([
+    <Intro />,
+    <p>For a list of commands, type 'help'.</p>,
+    <br />,
+  ]); //Shows on screen
   const [previousCommands, setPreviousCommands] = useState([]); //Previous text entered
   const [currentIndex, setCurrentIndex] = useState(previousCommands.length); //Index of previous commands Array to find command when up or down arrow pressed
 
   const inputRef = useRef(null);
+  const outputRef = useRef(null);
 
   useLayoutEffect(() => {
     if (inputRef.current) {
@@ -25,22 +31,30 @@ function App() {
     }
   }, [inputValue]);
 
+  useEffect(() => {
+    if (outputRef.current) {
+      outputRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [commandsList]);
+
   return (
     <>
       {commandsList.map((component, index) => (
         <div key={index}>{component}</div>
       ))}
-      <div style={{ display: "inline-flex", alignItems: "center" }}>
-        <p>{user}&nbsp;</p>
-        <input
-          ref={inputRef}
-          maxLength="50"
-          onChange={handleInput}
-          onKeyDown={handleKeyDown}
-          spellCheck="false"
-          type="text"
-          value={inputValue}
-        />
+      <div ref={outputRef}>
+        <div style={{ display: "inline-flex", alignItems: "center" }}>
+          <p>{user}&nbsp;</p>
+          <input
+            ref={inputRef}
+            maxLength="50"
+            onChange={handleInput}
+            onKeyDown={handleKeyDown}
+            spellCheck="false"
+            type="text"
+            value={inputValue}
+          />
+        </div>
       </div>
     </>
   );
@@ -68,13 +82,21 @@ function App() {
           <Intro />,
         ]);
         break;
-      case "contact":                                //TO DO
+      case "contact": //TO DO
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}
+            {" " + inputValue}
+          </p>,
+          <Contact />,
+        ]);
         break;
-      case "projects":                               //TO DO
+      case "projects": //TO DO
         break;
-      case "resume":                                 //TO DO
+      case "resume": //TO DO
         break;
-      case "theme":                                  //TO DO
+      case "theme": //TO DO
         break;
       case "help":
         setCommandsList((previousCommandsList) => [
@@ -86,7 +108,23 @@ function App() {
           <Help />,
         ]);
         break;
-      case "history":                                //TO DO
+      case "history":
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <>
+            <p key={previousCommandsList.length}>
+              {user}
+              {" " + inputValue}
+            </p>
+            <br />
+            {previousCommands.map((value, index) => (
+              <>
+                <p key={index}>&nbsp;&nbsp;&nbsp;&nbsp;{value}</p>
+                <br />
+              </>
+            ))}
+          </>,
+        ]);
         break;
       case "clear":
         setCommandsList([]);
@@ -100,14 +138,16 @@ function App() {
           </p>,
         ]);
         break;
-      default:                                       //TO DO
-        console.log(111111111);
+      default:
         setCommandsList((previousCommandsList) => [
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
             {user}
             {" " + inputValue}
           </p>,
+          <br />,
+          <p>'{inputValue}' is not a valid command. For a list of valid commands type 'help'.</p>,
+          <br />
         ]);
         break;
     }
@@ -153,6 +193,8 @@ function App() {
           setCurrentIndex(previousCommands.length + 1);
         }
         setInputValue("");
+
+        //outputRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
     }
   }
