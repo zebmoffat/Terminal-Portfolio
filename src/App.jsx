@@ -44,6 +44,11 @@ function App() {
     </>
   );
 
+
+  function checkCommand() {
+
+  }
+
   function handleInput(event) {
     setInputValue(event.target.value);
   }
@@ -71,7 +76,7 @@ function App() {
         }
         break;
       case "Enter":
-        if (inputValue.trim() !== "") {
+        if (/*inputValue.trim() !== ""*/ true) {
           setCommandsList((previousCommandsList) => [
             ...previousCommandsList,
             <p key={previousCommandsList.length}>
@@ -79,9 +84,15 @@ function App() {
               {" " + inputValue}
             </p>,
           ]);
-          setPreviousCommands((previous) => [...previousCommands, inputValue]);
-          setCurrentIndex(previousCommands.length + 1);
-          setInputValue("");
+
+          checkCommand();
+
+          if (inputValue.trim() !== "") {
+            
+            setPreviousCommands((previous) => [...previousCommands, inputValue]);
+            setCurrentIndex(previousCommands.length + 1);
+            setInputValue("");
+          }
         }
         break;
     }
