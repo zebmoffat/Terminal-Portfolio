@@ -1,5 +1,7 @@
-import { useLayoutEffect, useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import "./index.css";
+import About from "./components/About.jsx";
+import Help from "./components/Help.jsx";
 import Intro from "./components/Intro.jsx";
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
     }@desktop:~$`
   );
 
-  const [commandsList, setCommandsList] = useState([<Intro />]); //Shows on screen
+  const [commandsList, setCommandsList] = useState([<Intro />, <p>For a list of commands, type 'help'.</p>, <br />]); //Shows on screen
   const [previousCommands, setPreviousCommands] = useState([]); //Previous text entered
   const [currentIndex, setCurrentIndex] = useState(previousCommands.length); //Index of previous commands Array to find command when up or down arrow pressed
 
@@ -22,7 +24,6 @@ function App() {
       inputRef.current.focus();
     }
   }, [inputValue]);
-
 
   return (
     <>
@@ -44,9 +45,72 @@ function App() {
     </>
   );
 
-
-  function checkCommand() {
-
+  function checkCommand(userInput) {
+    const input = userInput.trim();
+    switch (input) {
+      case "about":
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}
+            {" " + inputValue}
+          </p>,
+          <About />,
+        ]);
+        break;
+      case "ascii":
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}
+            {" " + inputValue}
+          </p>,
+          <Intro />,
+        ]);
+        break;
+      case "contact":                                //TO DO
+        break;
+      case "projects":                               //TO DO
+        break;
+      case "resume":                                 //TO DO
+        break;
+      case "theme":                                  //TO DO
+        break;
+      case "help":
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}
+            {" " + inputValue}
+          </p>,
+          <Help />,
+        ]);
+        break;
+      case "history":                                //TO DO
+        break;
+      case "clear":
+        setCommandsList([]);
+        break;
+      case "":
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}
+            {" " + inputValue}
+          </p>,
+        ]);
+        break;
+      default:                                       //TO DO
+        console.log(111111111);
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}
+            {" " + inputValue}
+          </p>,
+        ]);
+        break;
+    }
   }
 
   function handleInput(event) {
@@ -76,24 +140,19 @@ function App() {
         }
         break;
       case "Enter":
-        if (/*inputValue.trim() !== ""*/ true) {
-          setCommandsList((previousCommandsList) => [
-            ...previousCommandsList,
-            <p key={previousCommandsList.length}>
-              {user}
-              {" " + inputValue}
-            </p>,
-          ]);
-
-          checkCommand();
-
-          if (inputValue.trim() !== "") {
-            
-            setPreviousCommands((previous) => [...previousCommands, inputValue]);
-            setCurrentIndex(previousCommands.length + 1);
-            setInputValue("");
-          }
+        /*setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}
+            {" " + inputValue}
+          </p>,
+        ]);*/
+        checkCommand(inputValue);
+        if (inputValue.trim() !== "") {
+          setPreviousCommands((previous) => [...previousCommands, inputValue]);
+          setCurrentIndex(previousCommands.length + 1);
         }
+        setInputValue("");
         break;
     }
   }
