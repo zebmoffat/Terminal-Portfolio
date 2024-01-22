@@ -120,7 +120,7 @@ function App() {
         break;
       case "resume": //TO DO
         break;
-      case "theme": //TO DO
+      case "theme":
         let themeDialog;
         switch (theme.name) {
           case "Blues":
@@ -156,6 +156,120 @@ function App() {
           </p>,
           <br />,
           <p>&nbsp;&nbsp;&nbsp;&nbsp;{themeDialog}</p>,
+          <br />,
+        ]);
+        break;
+      case "theme --Blues":
+        let themeToBlues;
+        if (theme.name !== "Blues") {
+          themeToBlues = `Theme switched from '${theme.name}' to 'Blues'`;
+          setTheme(themeColors.Blues);
+        } else {
+          themeToBlues = "Theme was already 'Blues'!";
+        }
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor }}>{inputValue}</span>
+          </p>,
+          <br />,
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{themeToBlues}</p>,
+          <br />,
+        ]);
+        break;
+      case "theme --Classic":
+        let themeToClassic;
+        if (theme.name !== "Classic") {
+          themeToClassic = `Theme switched from '${theme.name}' to 'Classic'`;
+          setTheme(themeColors.Classic);
+        } else {
+          themeToClassic = "Theme was already 'Classic'!";
+        }
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor }}>{inputValue}</span>
+          </p>,
+          <br />,
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{themeToClassic}</p>,
+          <br />,
+        ]);
+        break;
+      case "theme --Grape":
+        let themeToGrape;
+        if (theme.name !== "Grape") {
+          themeToGrape = `Theme switched from '${theme.name}' to 'Grape'`;
+          setTheme(themeColors.Grape);
+        } else {
+          themeToGrape = "Theme was already 'Grape'!";
+        }
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor }}>{inputValue}</span>
+          </p>,
+          <br />,
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{themeToGrape}</p>,
+          <br />,
+        ]);
+        break;
+      case "theme --Grass":
+        let themeToGrass;
+        if (theme.name !== "Grass") {
+          themeToGrass = `Theme switched from '${theme.name}' to 'Grass'`;
+          setTheme(themeColors.Grass);
+        } else {
+          themeToGrass = "Theme was already 'Grass'!";
+        }
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor }}>{inputValue}</span>
+          </p>,
+          <br />,
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{themeToGrass}</p>,
+          <br />,
+        ]);
+        break;
+      case "theme --Reds":
+        let themeToReds;
+        if (theme.name !== "Reds") {
+          themeToReds = `Theme switched from '${theme.name}' to 'Reds'`;
+          setTheme(themeColors.Reds);
+        } else {
+          themeToReds = "Theme was already 'Reds'!";
+        }
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor }}>{inputValue}</span>
+          </p>,
+          <br />,
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{themeToReds}</p>,
+          <br />,
+        ]);
+        break;
+      case "theme --Sunset":
+        let themeToSunset;
+        if (theme.name !== "Sunset") {
+          themeToSunset = `Theme switched from '${theme.name}' to 'Sunset'`;
+          setTheme(themeColors.Sunset);
+        } else {
+          themeToSunset = "Theme was already 'Sunset'!";
+        }
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor }}>{inputValue}</span>
+          </p>,
+          <br />,
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{themeToSunset}</p>,
           <br />,
         ]);
         break;
@@ -244,21 +358,12 @@ function App() {
         }
         break;
       case "Enter":
-        /*setCommandsList((previousCommandsList) => [
-          ...previousCommandsList,
-          <p key={previousCommandsList.length}>
-            {user}
-            {" " + inputValue}
-          </p>,
-        ]);*/
         checkCommand(inputValue);
         if (inputValue.trim() !== "") {
-          setPreviousCommands((previous) => [...previousCommands, inputValue]);
+          setPreviousCommands([...previousCommands, inputValue]);
           setCurrentIndex(previousCommands.length + 1);
         }
         setInputValue("");
-
-        //outputRef.current.scrollIntoView({ behavior: 'smooth' });
         break;
     }
   }
