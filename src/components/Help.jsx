@@ -14,6 +14,8 @@ function Help() {
 
     'history'                       lists previously used commands
 
+    'ascii'                         ascii art
+
     'clear'                         clears the terminal
     `;
 

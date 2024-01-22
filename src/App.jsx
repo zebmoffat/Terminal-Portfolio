@@ -7,7 +7,7 @@ import Intro from "./components/Intro.jsx";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [theme, setTheme] = useState(0);
+  const [theme, setTheme] = useState(themeColors.Classic);
   const [user] = useState(
     `user${
       Math.floor(Math.random() * (1000000 - 10000 + 1)) + 10000
@@ -33,30 +33,52 @@ function App() {
 
   useEffect(() => {
     if (outputRef.current) {
-      outputRef.current.scrollIntoView({ behavior: 'smooth' });
+      outputRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [commandsList]);
 
+
+
+
+
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentColorIndex((prevIndex) => (prevIndex + 1) % theme.colorArray.length);
+    }, 3000); // Change color every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [theme.colorArray.length]);
+
+  const gradient = {
+    color: theme.colorArray[currentColorIndex],
+    transition: 'color 1s ease-in-out', // Add CSS transition for text color
+  };
+
+
+
   return (
-    <>
+    <div style={gradient}>
       {commandsList.map((component, index) => (
         <div key={index}>{component}</div>
       ))}
       <div ref={outputRef}>
         <div style={{ display: "inline-flex", alignItems: "center" }}>
-          <p>{user}&nbsp;</p>
+          <p style={gradient}>{user}&nbsp;</p>
           <input
-            ref={inputRef}
             maxLength="50"
             onChange={handleInput}
             onKeyDown={handleKeyDown}
+            ref={inputRef}
             spellCheck="false"
+            style={{ color: theme.commandColor, important: 'true' }}
             type="text"
             value={inputValue}
           />
         </div>
       </div>
-    </>
+    </div>
   );
 
   function checkCommand(userInput) {
@@ -66,8 +88,8 @@ function App() {
         setCommandsList((previousCommandsList) => [
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
-            {user}
-            {" " + inputValue}
+            {user}{" "}
+            <span style={{ color: theme.commandColor, important: 'true' }}>{inputValue}</span>
           </p>,
           <About />,
         ]);
@@ -76,8 +98,8 @@ function App() {
         setCommandsList((previousCommandsList) => [
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
-            {user}
-            {" " + inputValue}
+            {user}{" "}
+            <span style={{ color: theme.commandColor, important: 'true' }}>{inputValue}</span>
           </p>,
           <Intro />,
         ]);
@@ -86,8 +108,8 @@ function App() {
         setCommandsList((previousCommandsList) => [
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
-            {user}
-            {" " + inputValue}
+            {user}{" "}
+            <span style={{ color: theme.commandColor, important: 'true' }}>{inputValue}</span>
           </p>,
           <Contact />,
         ]);
@@ -97,6 +119,17 @@ function App() {
       case "resume": //TO DO
         break;
       case "theme": //TO DO
+        //"Theme switched to ..."
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor }}>{inputValue}</span>
+          </p>,
+          <br />,
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;Theme switched to&nbsp;{}</p>,
+          <br />,
+        ]);
         break;
       case "help":
         setCommandsList((previousCommandsList) => [
@@ -146,8 +179,11 @@ function App() {
             {" " + inputValue}
           </p>,
           <br />,
-          <p>'{inputValue}' is not a valid command. For a list of valid commands type 'help'.</p>,
-          <br />
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;'{inputValue}' is not a valid command. For a
+            list of valid commands type 'help'.
+          </p>,
+          <br />,
         ]);
         break;
     }
@@ -199,5 +235,23 @@ function App() {
     }
   }
 }
+
+const themeColors = {
+  Blues: {
+    name: 'Blues',
+    commandColor: '#2f6562',
+    colorArray: ['#6d9bdb', '#457ecf', '#254e89', '#113760']
+  },
+  Classic: {
+    name: 'Classic',
+    commandColor: "#faa134",
+    colorArray: ['#ffffff'],
+  },
+  Grass: {
+    name: 'Grass',
+    commandColor: "#b8fa72",
+    colorArray: ['#9ff742','#87f312', '#6cc70b', '#529609'],
+  },
+};
 
 export default App;
