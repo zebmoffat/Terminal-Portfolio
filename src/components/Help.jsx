@@ -8,7 +8,13 @@ function Help() {
 
     'resume'                        displays my resume
 
-    'theme'                         changes the theme
+    'theme (--optional name)'       changes the theme
+      --Blues
+      --Classic
+      --Grape
+      --Grass
+      --Reds
+      --Sunset
 
     'help'                          lists usable commands
 

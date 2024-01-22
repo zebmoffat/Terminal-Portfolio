@@ -7,7 +7,7 @@ import Intro from "./components/Intro.jsx";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [theme, setTheme] = useState(themeColors.Classic);
+  const [theme, setTheme] = useState(themeColors.Grape);
   const [user] = useState(
     `user${
       Math.floor(Math.random() * (1000000 - 10000 + 1)) + 10000
@@ -37,26 +37,22 @@ function App() {
     }
   }, [commandsList]);
 
-
-
-
-
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentColorIndex((prevIndex) => (prevIndex + 1) % theme.colorArray.length);
-    }, 3000); // Change color every 3 seconds
+      setCurrentColorIndex(
+        (prevIndex) => (prevIndex + 1) % theme.colorArray.length
+      );
+    }, 4000); // Change color every 3 seconds
 
     return () => clearInterval(interval);
   }, [theme.colorArray.length]);
 
   const gradient = {
     color: theme.colorArray[currentColorIndex],
-    transition: 'color 1s ease-in-out', // Add CSS transition for text color
+    transition: "color 1s ease-in-out", // Add CSS transition for text color
   };
-
-
 
   return (
     <div style={gradient}>
@@ -72,7 +68,7 @@ function App() {
             onKeyDown={handleKeyDown}
             ref={inputRef}
             spellCheck="false"
-            style={{ color: theme.commandColor, important: 'true' }}
+            style={{ color: theme.commandColor, important: "true" }}
             type="text"
             value={inputValue}
           />
@@ -89,7 +85,9 @@ function App() {
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
             {user}{" "}
-            <span style={{ color: theme.commandColor, important: 'true' }}>{inputValue}</span>
+            <span style={{ color: theme.commandColor, important: "true" }}>
+              {inputValue}
+            </span>
           </p>,
           <About />,
         ]);
@@ -99,7 +97,9 @@ function App() {
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
             {user}{" "}
-            <span style={{ color: theme.commandColor, important: 'true' }}>{inputValue}</span>
+            <span style={{ color: theme.commandColor, important: "true" }}>
+              {inputValue}
+            </span>
           </p>,
           <Intro />,
         ]);
@@ -109,7 +109,9 @@ function App() {
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
             {user}{" "}
-            <span style={{ color: theme.commandColor, important: 'true' }}>{inputValue}</span>
+            <span style={{ color: theme.commandColor, important: "true" }}>
+              {inputValue}
+            </span>
           </p>,
           <Contact />,
         ]);
@@ -119,7 +121,33 @@ function App() {
       case "resume": //TO DO
         break;
       case "theme": //TO DO
-        //"Theme switched to ..."
+        let themeDialog;
+        switch (theme.name) {
+          case "Blues":
+            setTheme(themeColors.Classic);
+            themeDialog = "Theme switched from 'Blues' to Classic";
+            break;
+          case "Classic":
+            setTheme(themeColors.Grape);
+            themeDialog = "Theme switched from 'Classic' to 'Grape'";
+            break;
+          case "Grape":
+            setTheme(themeColors.Grass);
+            themeDialog = "Theme switched from 'Grape' to 'Grass'";
+            break;
+          case "Grass":
+            setTheme(themeColors.Reds);
+            themeDialog = "Theme switched from 'Grass' to 'Reds'";
+            break;
+          case "Reds":
+            setTheme(themeColors.Sunset);
+            themeDialog = "Theme switched from 'Reds' to 'Sunset'";
+            break;
+          case "Sunset":
+            setTheme(themeColors.Blues);
+            themeDialog = "Theme switched from 'Sunset' to 'Blues'";
+            break;
+        }
         setCommandsList((previousCommandsList) => [
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
@@ -127,7 +155,7 @@ function App() {
             <span style={{ color: theme.commandColor }}>{inputValue}</span>
           </p>,
           <br />,
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;Theme switched to&nbsp;{}</p>,
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;{themeDialog}</p>,
           <br />,
         ]);
         break;
@@ -238,19 +266,34 @@ function App() {
 
 const themeColors = {
   Blues: {
-    name: 'Blues',
-    commandColor: '#2f6562',
-    colorArray: ['#6d9bdb', '#457ecf', '#254e89', '#113760']
+    name: "Blues",
+    commandColor: "#2f6562",
+    colorArray: ["#6d9bdb", "#457ecf", "#254e89", "#113760"],
   },
   Classic: {
-    name: 'Classic',
+    name: "Classic",
     commandColor: "#faa134",
-    colorArray: ['#ffffff'],
+    colorArray: ["#ffffff"],
+  },
+  Grape: {
+    name: "Grape",
+    commandColor: "#dc8fef",
+    colorArray: ["#cf9db0", "#bd7b95", "#ab5b79", "#8a4862"],
   },
   Grass: {
-    name: 'Grass',
+    name: "Grass",
     commandColor: "#b8fa72",
-    colorArray: ['#9ff742','#87f312', '#6cc70b', '#529609'],
+    colorArray: ["#9ff742", "#87f312", "#6cc70b", "#529609"],
+  },
+  Reds: {
+    name: "Reds",
+    commandColor: "",
+    colorArray: ["", "", "", ""],
+  },
+  Sunset: {
+    name: "Sunset",
+    commandColor: "#f3f719",
+    colorArray: ["#f8ddad", "#f3c87f", "#e7b551", "#e8a024"],
   },
 };
 
