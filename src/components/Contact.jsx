@@ -1,5 +1,15 @@
 function Contact() {
-    return <br />;
+    let contactInfo = `
+    
+    `;
+
+    return (<p>{contactInfo}</p>);
 }
+
+//email
+//phone number
+//linkedIn
+//GitHub
+
 
 export default Contact;

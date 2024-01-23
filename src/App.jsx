@@ -1,13 +1,16 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./index.css";
+
 import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
 import Help from "./components/Help.jsx";
 import Intro from "./components/Intro.jsx";
+import Projects from "./components/Projects.jsx";
+import Resume from "./components/Resume.jsx";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [theme, setTheme] = useState(themeColors.Grape);
+  const [theme, setTheme] = useState(localTheme());
   const [user] = useState(
     `user${
       Math.floor(Math.random() * (1000000 - 10000 + 1)) + 10000
@@ -164,6 +167,7 @@ function App() {
         if (theme.name !== "Blues") {
           themeToBlues = `Theme switched from '${theme.name}' to 'Blues'`;
           setTheme(themeColors.Blues);
+          localStorage.setItem("lsTheme", JSON.stringify(themeColors.Blues));
         } else {
           themeToBlues = "Theme was already 'Blues'!";
         }
@@ -183,6 +187,7 @@ function App() {
         if (theme.name !== "Classic") {
           themeToClassic = `Theme switched from '${theme.name}' to 'Classic'`;
           setTheme(themeColors.Classic);
+          localStorage.setItem("lsTheme", JSON.stringify(themeColors.Classic));
         } else {
           themeToClassic = "Theme was already 'Classic'!";
         }
@@ -202,6 +207,7 @@ function App() {
         if (theme.name !== "Grape") {
           themeToGrape = `Theme switched from '${theme.name}' to 'Grape'`;
           setTheme(themeColors.Grape);
+          localStorage.setItem("lsTheme", JSON.stringify(themeColors.Grape));
         } else {
           themeToGrape = "Theme was already 'Grape'!";
         }
@@ -221,6 +227,7 @@ function App() {
         if (theme.name !== "Grass") {
           themeToGrass = `Theme switched from '${theme.name}' to 'Grass'`;
           setTheme(themeColors.Grass);
+          localStorage.setItem("lsTheme", JSON.stringify(themeColors.Grass));
         } else {
           themeToGrass = "Theme was already 'Grass'!";
         }
@@ -240,6 +247,7 @@ function App() {
         if (theme.name !== "Reds") {
           themeToReds = `Theme switched from '${theme.name}' to 'Reds'`;
           setTheme(themeColors.Reds);
+          localStorage.setItem("lsTheme", JSON.stringify(themeColors.Reds));
         } else {
           themeToReds = "Theme was already 'Reds'!";
         }
@@ -259,6 +267,7 @@ function App() {
         if (theme.name !== "Sunset") {
           themeToSunset = `Theme switched from '${theme.name}' to 'Sunset'`;
           setTheme(themeColors.Sunset);
+          localStorage.setItem("lsTheme", JSON.stringify(themeColors.Sunset));
         } else {
           themeToSunset = "Theme was already 'Sunset'!";
         }
@@ -369,11 +378,18 @@ function App() {
   }
 }
 
+function localTheme() {
+  if (localStorage.getItem("lsTheme")) {
+    return JSON.parse(localStorage.getItem("lsTheme"));
+  }
+  return themeColors.Blues;
+}
+
 const themeColors = {
   Blues: {
     name: "Blues",
-    commandColor: "#2f6562",
-    colorArray: ["#6d9bdb", "#457ecf", "#254e89", "#113760"],
+    commandColor: "#5aaffa",
+    colorArray: ["#5fb0f2", "#3198ed", "#147ed6", "#1162a7"],
   },
   Classic: {
     name: "Classic",
@@ -383,7 +399,7 @@ const themeColors = {
   Grape: {
     name: "Grape",
     commandColor: "#dc8fef",
-    colorArray: ["#cf9db0", "#bd7b95", "#ab5b79", "#8a4862"],
+    colorArray: ["#e3b1be", "#d58c9e", "#c76880", "#b64662"],
   },
   Grass: {
     name: "Grass",
@@ -392,8 +408,8 @@ const themeColors = {
   },
   Reds: {
     name: "Reds",
-    commandColor: "",
-    colorArray: ["", "", "", ""],
+    commandColor: "#fa5a5a",
+    colorArray: ["#f1a6a6", "#e66565", "#de3a3a", "#c42222"],
   },
   Sunset: {
     name: "Sunset",
