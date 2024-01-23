@@ -107,7 +107,7 @@ function App() {
           <Intro />,
         ]);
         break;
-      case "contact": //TO DO
+      case "contact":
         setCommandsList((previousCommandsList) => [
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
@@ -120,35 +120,61 @@ function App() {
         ]);
         break;
       case "projects": //TO DO
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor, important: "true" }}>
+              {inputValue}
+            </span>
+          </p>,
+          <Projects />,
+        ]);
         break;
       case "resume": //TO DO
-        break;
+      setCommandsList((previousCommandsList) => [
+        ...previousCommandsList,
+        <p key={previousCommandsList.length}>
+          {user}{" "}
+          <span style={{ color: theme.commandColor, important: "true" }}>
+            {inputValue}
+          </span>
+        </p>,
+        <Resume />,
+      ]);  
+      break;
       case "theme":
         let themeDialog;
         switch (theme.name) {
           case "Blues":
             setTheme(themeColors.Classic);
             themeDialog = "Theme switched from 'Blues' to Classic";
+            localStorage.setItem("lsTheme", JSON.stringify(themeColors.Classic));
             break;
           case "Classic":
             setTheme(themeColors.Grape);
             themeDialog = "Theme switched from 'Classic' to 'Grape'";
+            localStorage.setItem("lsTheme", JSON.stringify(themeColors.Grape));
             break;
           case "Grape":
             setTheme(themeColors.Grass);
             themeDialog = "Theme switched from 'Grape' to 'Grass'";
+            localStorage.setItem("lsTheme", JSON.stringify(themeColors.Grass));
             break;
           case "Grass":
             setTheme(themeColors.Reds);
             themeDialog = "Theme switched from 'Grass' to 'Reds'";
+            localStorage.setItem("lsTheme", JSON.stringify(themeColors.Reds));
             break;
           case "Reds":
             setTheme(themeColors.Sunset);
             themeDialog = "Theme switched from 'Reds' to 'Sunset'";
+            localStorage.setItem("lsTheme", JSON.stringify(themeColors.Sunset));
             break;
           case "Sunset":
             setTheme(themeColors.Blues);
             themeDialog = "Theme switched from 'Sunset' to 'Blues'";
+            localStorage.setItem("lsTheme", JSON.stringify(themeColors.Blues));
             break;
         }
         setCommandsList((previousCommandsList) => [
@@ -382,7 +408,7 @@ function localTheme() {
   if (localStorage.getItem("lsTheme")) {
     return JSON.parse(localStorage.getItem("lsTheme"));
   }
-  return themeColors.Blues;
+  return themeColors.Grass;
 }
 
 const themeColors = {
