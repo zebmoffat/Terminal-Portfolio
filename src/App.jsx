@@ -119,7 +119,7 @@ function App() {
           <Contact />,
         ]);
         break;
-      case "projects": //TO DO
+      case "projects":
         setCommandsList((previousCommandsList) => [
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
@@ -131,7 +131,7 @@ function App() {
           <Projects />,
         ]);
         break;
-      case "resume": //TO DO
+      case "resume":
       setCommandsList((previousCommandsList) => [
         ...previousCommandsList,
         <p key={previousCommandsList.length}>
