@@ -47,7 +47,7 @@ function App() {
       setCurrentColorIndex(
         (prevIndex) => (prevIndex + 1) % theme.colorArray.length
       );
-    }, 4000); // Change color every 3 seconds
+    }, 5000); // Change color every 5 seconds
 
     return () => clearInterval(interval);
   }, [theme.colorArray.length]);
@@ -81,7 +81,7 @@ function App() {
   );
 
   function checkCommand(userInput) {
-    const input = userInput.trim();
+    const input = userInput.trim().toLowerCase();
     switch (input) {
       case "about":
         setCommandsList((previousCommandsList) => [
@@ -188,7 +188,7 @@ function App() {
           <br />,
         ]);
         break;
-      case "theme --Blues":
+      case "theme --blues":
         let themeToBlues;
         if (theme.name !== "Blues") {
           themeToBlues = `Theme switched from '${theme.name}' to 'Blues'`;
@@ -208,7 +208,7 @@ function App() {
           <br />,
         ]);
         break;
-      case "theme --Classic":
+      case "theme --classic":
         let themeToClassic;
         if (theme.name !== "Classic") {
           themeToClassic = `Theme switched from '${theme.name}' to 'Classic'`;
@@ -228,7 +228,7 @@ function App() {
           <br />,
         ]);
         break;
-      case "theme --Grape":
+      case "theme --grape":
         let themeToGrape;
         if (theme.name !== "Grape") {
           themeToGrape = `Theme switched from '${theme.name}' to 'Grape'`;
@@ -248,7 +248,7 @@ function App() {
           <br />,
         ]);
         break;
-      case "theme --Grass":
+      case "theme --grass":
         let themeToGrass;
         if (theme.name !== "Grass") {
           themeToGrass = `Theme switched from '${theme.name}' to 'Grass'`;
@@ -268,7 +268,7 @@ function App() {
           <br />,
         ]);
         break;
-      case "theme --Reds":
+      case "theme --reds":
         let themeToReds;
         if (theme.name !== "Reds") {
           themeToReds = `Theme switched from '${theme.name}' to 'Reds'`;
@@ -288,7 +288,7 @@ function App() {
           <br />,
         ]);
         break;
-      case "theme --Sunset":
+      case "theme --sunset":
         let themeToSunset;
         if (theme.name !== "Sunset") {
           themeToSunset = `Theme switched from '${theme.name}' to 'Sunset'`;
@@ -408,7 +408,7 @@ function localTheme() {
   if (localStorage.getItem("lsTheme")) {
     return JSON.parse(localStorage.getItem("lsTheme"));
   }
-  return themeColors.Grass;
+  return themeColors.Sunset;
 }
 
 const themeColors = {
@@ -440,7 +440,7 @@ const themeColors = {
   Sunset: {
     name: "Sunset",
     commandColor: "#f3f719",
-    colorArray: ["#f8ddad", "#f3c87f", "#e7b551", "#e8a024"],
+    colorArray: ["#fca7a7", "#f3c87f", "#e7b551", "#e8a024"],
   },
 };
 

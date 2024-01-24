@@ -9,12 +9,12 @@ function Help() {
     'resume'                        displays my resume
 
     'theme (--optional name)'       changes the theme
-      --Blues
-      --Classic
-      --Grape
-      --Grass
-      --Reds
-      --Sunset
+      --blues
+      --classic
+      --grape
+      --grass
+      --reds
+      --sunset
 
     'help'                          lists usable commands
 
