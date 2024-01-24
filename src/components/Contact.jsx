@@ -40,9 +40,4 @@ function Contact() {
   );
 }
 
-//email
-//phone number
-//linkedIn
-//GitHub
-
 export default Contact;
