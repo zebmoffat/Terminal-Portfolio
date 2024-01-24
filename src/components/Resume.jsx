@@ -6,7 +6,7 @@ function Resume() {
       <p>
         &nbsp;&nbsp;&nbsp;&nbsp;My resume can be downloaded as a PDF&nbsp;
         <em>
-          <a href="../../public/Zeb_Moffat_Resume" download="Zeb_Moffat_Resume.pdf">here</a>
+          <a href="/Terminal-Portfolio/public/Zeb_Moffat_Resume.pdf">here</a>
         </em>
         . Or it can be found online&nbsp;
         <em>
