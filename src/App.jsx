@@ -66,6 +66,7 @@ function App() {
         <div style={{ display: "inline-flex", alignItems: "center" }}>
           <p style={gradient}>{user}&nbsp;</p>
           <input
+            id="input"
             maxLength="50"
             onChange={handleInput}
             onKeyDown={handleKeyDown}
@@ -132,24 +133,27 @@ function App() {
         ]);
         break;
       case "resume":
-      setCommandsList((previousCommandsList) => [
-        ...previousCommandsList,
-        <p key={previousCommandsList.length}>
-          {user}{" "}
-          <span style={{ color: theme.commandColor, important: "true" }}>
-            {inputValue}
-          </span>
-        </p>,
-        <Resume />,
-      ]);  
-      break;
+        setCommandsList((previousCommandsList) => [
+          ...previousCommandsList,
+          <p key={previousCommandsList.length}>
+            {user}{" "}
+            <span style={{ color: theme.commandColor, important: "true" }}>
+              {inputValue}
+            </span>
+          </p>,
+          <Resume />,
+        ]);
+        break;
       case "theme":
         let themeDialog;
         switch (theme.name) {
           case "Blues":
             setTheme(themeColors.Classic);
             themeDialog = "Theme switched from 'Blues' to Classic";
-            localStorage.setItem("lsTheme", JSON.stringify(themeColors.Classic));
+            localStorage.setItem(
+              "lsTheme",
+              JSON.stringify(themeColors.Classic)
+            );
             break;
           case "Classic":
             setTheme(themeColors.Grape);
@@ -353,7 +357,9 @@ function App() {
           ...previousCommandsList,
           <p key={previousCommandsList.length}>
             {user}
-            {" " + inputValue}
+            <span style={{ color: theme.commandColor }}>
+              {" " + inputValue}
+            </span>
           </p>,
           <br />,
           <p>
