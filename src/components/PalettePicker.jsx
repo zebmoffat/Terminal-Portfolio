@@ -1,6 +1,6 @@
 function PalettePicker() {
-  const info = `    Palette Picker is a fun React-built
-    application that helps the user generate    
+  const info = `    Palette Picker is a fun React-built   
+    application that helps the user generate       
     random color palettes. This project was
     made during the Sunhacks Hackathon at ASU.
     
@@ -18,7 +18,7 @@ function PalettePicker() {
           <h2>&nbsp;&nbsp;Palette Picker</h2>
           <br />
           <p style={{ whiteSpace: "pre" }}>{info}</p>
-          <br />
+
           <p>
             &nbsp;&nbsp;&nbsp;&nbsp;Palette Picker can be found&nbsp;
             <em>
@@ -29,6 +29,7 @@ function PalettePicker() {
                 here
               </a>
             </em>
+            .
           </p>
         </div>
         <iframe
