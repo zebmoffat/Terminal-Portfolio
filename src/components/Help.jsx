@@ -6,7 +6,7 @@ function Help() {
 
     'projects'                      lists my projects
 
-    'resume'                        displays my resume
+    'resume'                        links to my resume
 
     'theme (--optional)'            changes the theme
       --blues
