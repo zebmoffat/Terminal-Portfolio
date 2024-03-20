@@ -1,4 +1,5 @@
 import ContactsApp from "./ContactsApp";
+import BMPFilter from "./BMPFilter";
 import PalettePicker from "./PalettePicker";
 import Palindrome from "./Palindrome";
 
@@ -18,7 +19,7 @@ function Projects() {
         =====================================================================================================
       </p>
       <br />
-      <ContactsApp />
+      <BMPFilter />
 
       <br />
     </>
