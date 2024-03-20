@@ -1,1 +1,1 @@
-Work in progress terminal-like portofolio website
+A portfolio website to showcase my information and work in the style of a terminal. Built with React.
