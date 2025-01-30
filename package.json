@@ -1,6 +1,6 @@
 {
-  "homepage": "https://zebmoffat.com"
   "name": "terminal-portfolio",
+  "homepage": "https://zebmoffat.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
