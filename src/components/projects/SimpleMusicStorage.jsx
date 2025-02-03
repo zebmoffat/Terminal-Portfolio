@@ -4,8 +4,8 @@ export default function SimpleMusicStorage() {
     and a MySQL database server. Built using Java
     for the server-side, the app supports CRUD
     operations on the database. Communication
-    between the server and clients is handled
-    via gRPC, ensuring efficient and
+    between the server and Python or Go clients is
+    handled via gRPC, ensuring efficient and
     secure data exchange.
     `;
 
@@ -13,7 +13,7 @@ export default function SimpleMusicStorage() {
     <>
       <div style={{ display: "flex", alignItems: "center" }}>
         <div>
-          <h2>&nbsp;&nbsp;Simple Music Storage</h2>
+          <h2>&nbsp;&nbsp;Simple-Music-Storage</h2>
           <br />
           <p style={{ whiteSpace: "pre" }}>{info}</p>
           
@@ -34,7 +34,7 @@ export default function SimpleMusicStorage() {
         <iframe
           width="480"
           height="270"
-          src=""
+          src="https://www.youtube.com/embed/JiSDPNUjfJs"
           title="Simple Music Storage Demo"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
