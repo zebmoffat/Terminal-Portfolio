@@ -23,7 +23,7 @@ function PalettePicker() {
             &nbsp;&nbsp;&nbsp;&nbsp;Palette Picker can be found&nbsp;
             <em>
               <a
-                href="https://zebmoffat.github.io/Palette-Picker/"
+                href="https://palette-picker.zebmoffat.com/"
                 target="_blank"
               >
                 here

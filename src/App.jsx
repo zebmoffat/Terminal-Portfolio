@@ -47,7 +47,7 @@ function App() {
       setCurrentColorIndex(
         (prevIndex) => (prevIndex + 1) % theme.colorArray.length
       );
-    }, 5000); // Change color every 5 seconds
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [theme.colorArray.length]);
@@ -414,14 +414,14 @@ function localTheme() {
   if (localStorage.getItem("lsTheme")) {
     return JSON.parse(localStorage.getItem("lsTheme"));
   }
-  return themeColors.Sunset;
+  return themeColors.Blues;
 }
 
 const themeColors = {
   Blues: {
     name: "Blues",
     commandColor: "#5aaffa",
-    colorArray: ["#5fb0f2", "#3198ed", "#147ed6", "#1162a7"],
+    colorArray: ["#b3ddff", "#6fafe3", "#379bed", "#0f8cf2"],
   },
   Classic: {
     name: "Classic",

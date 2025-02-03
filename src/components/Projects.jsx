@@ -1,25 +1,24 @@
-import ContactsApp from "./ContactsApp";
-import BMPFilter from "./BMPFilter";
-import PalettePicker from "./PalettePicker";
-import Palindrome from "./Palindrome";
+import Logosphere from "./projects/Logosphere";
+import SimpleMusicStorage from "./projects/SimpleMusicStorage";
+import PalettePicker from "./projects/PalettePicker";
 
 function Projects() {
   return (
     <>
       <br />
+      <Logosphere />
+
+      <p>
+        =====================================================================================================
+      </p>
+      <br />
+      <SimpleMusicStorage />
+
+      <p>
+        =====================================================================================================
+      </p>
+      <br />
       <PalettePicker />
-
-      <p>
-        =====================================================================================================
-      </p>
-      <br />
-      <Palindrome />
-
-      <p>
-        =====================================================================================================
-      </p>
-      <br />
-      <BMPFilter />
 
       <br />
     </>
