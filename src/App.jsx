@@ -38,7 +38,7 @@ function App() {
     if (outputRef.current) {
       outputRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [commandsList]);
+  }, [commandsList]);  
 
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
 
