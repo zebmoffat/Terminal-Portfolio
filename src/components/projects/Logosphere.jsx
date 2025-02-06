@@ -1,5 +1,5 @@
 export default function Logosphere() {
-  const info = `    Logosphere is a work-in-progress web app
+  const info = `    Logosphere is a work-in-progress web app       
     designed to help users reflect and grow. It
     combines journaling features with access to
     timeless classics like Meditations and
@@ -30,7 +30,7 @@ export default function Logosphere() {
         <iframe
           width="480"
           height="270"
-          src=""
+          src="https://www.youtube.com/embed/tOrbVuHWc-U"
           title="Logosphere Demo"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

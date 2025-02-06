@@ -18,10 +18,10 @@ function Contact() {
       <p>
         &nbsp;&nbsp;&nbsp;&nbsp;LinkedIn:&nbsp;&nbsp;&nbsp;&nbsp;
         <a
-          href="https://www.linkedin.com/in/zeb-moffat-a52229279/"
+          href="linkedin.com/in/zebmoffat"
           target="_blank"
         >
-          https://www.linkedin.com/in/zeb-moffat-a52229279/
+          linkedin.com/in/zebmoffat
         </a>
       </p>
       <br />
