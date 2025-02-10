@@ -38,6 +38,7 @@ export default function SimpleMusicStorage() {
           title="Simple Music Storage Demo"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
         ></iframe>
       </div>
     </>
